@@ -16,7 +16,7 @@ class Solution:
             visited[nums[i]]=i
 
 #Solution 2
-#Space complexity = O(1)
+#Space complexity = O(1) , Time complexity = O(n^2)
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
        for i in range(len(nums)):
