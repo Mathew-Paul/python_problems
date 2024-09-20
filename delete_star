@@ -1,0 +1,29 @@
+PROBLEM:
+Ram, who have scares to stars, found himself constantly bothered by his friend's liking for them.
+One day, his friend presented him with a game designed to help overcome his fear. In this game, Ram is presented with a string containing a mix of characters and stars. 
+His objective isto select a star and eliminate both the star itself and the nearest non-star character to its left.
+This process continues until there are no stars left in the string. Once all stars are removed,Ram must return the remaining string.
+Can you help Ram by writing an algorithmic code ?
+  
+Constraints :
+● 1<= s.length <=10^5
+● S consists of lowercase english letters and star 
+  
+*Input 0 :"leet**cod*e"
+Output 0 :"Lecoe"
+Input 1 :"erase*****"
+Output 1 :""
+
+Solution:
+class Solution:
+    def star_del(self,s):
+        st=[]
+        for c in s:
+            if(c=="*"):
+                if st:
+                    st.pop()
+            else:
+                st.append(c)
+        return "".join(st)
+s=Solution()
+print(s.star_del("erase****"))
