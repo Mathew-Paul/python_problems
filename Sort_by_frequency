@@ -1,0 +1,30 @@
+PROBLEM:
+
+Shivina wants to design a game for kids for their enjoyment as well as their knowledge.
+She takes the string from the children and sorts the string by the property such that the character which has the highest frequency will come first and the character which has the least frequency 
+will come last. Now you have to write a code for that and help Shivina for getting the sorted string according to the frequency which will have to be higher to lower.
+Write an algorithmic code for this.
+Constraint1 <= s.length <= 5 * 10^5s consists of uppercase and lowercase English letters and digits
+Input: s = "cccaaa"
+Output : "cccaaa"
+Explanation :a and c have same frequency 3 , but a come before c in alphabet.
+Input1 : s = "ccaaa"
+Output1 : "aaacc"
+
+-------------------------------------------------------------------------------------------------
+class Solution:
+    def string_freq(self,s):
+        freq={}
+        for c in s:
+            if c in freq:
+                freq[c]+=1
+            else:
+                freq[c]=1
+        sort_char = sorted(freq.items(),key = lambda item: (-item[1],item[0]))
+        result = ''
+        for c, count in sort_char:
+            result += c * count
+        return result
+            
+soln=Solution()
+print(soln.string_freq("cccaaaa"))
