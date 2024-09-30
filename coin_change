@@ -1,0 +1,44 @@
+Given an integer array of coins[ ] of size N representing different types of denominations and an integer sum, the task is to count all combinations of coins to make a given value sum.  
+Note: Assume that you have an infinite supply of each type of coin. 
+--------------------------------------------------------
+Input: sum = 4, coins[] = {1,2,3}
+Output: 4
+Explanation: there are four solutions: {1, 1, 1, 1}, {1, 1, 2}, {2, 2} and {1, 3}
+
+
+Input: sum = 10, coins[] = {2, 5, 3, 6}
+Output: 5
+Explanation: There are five solutions: 
+{2,2,2,2,2}, {2,2,3,3}, {2,2,6}, {2,3,5} and {5,5}
+--------------------------------------------------------
+def count(coins, target_sum, n, dp):
+    # Base Case: If target_sum is 0, there is one way to make it (no coins)
+    if target_sum == 0:
+        return 1
+
+    # If no coins left or target_sum is negative, no way to make the sum
+    if n == 0 or target_sum < 0:
+        return 0
+
+    # If the result is already computed, return it
+    if dp[n][target_sum] != -1:
+        return dp[n][target_sum]
+
+    # Count ways including and excluding the last coin
+    include_last = count(coins, target_sum - coins[n - 1], n, dp)
+    exclude_last = count(coins, target_sum, n - 1, dp)
+
+    # Store and return the result
+    dp[n][target_sum] = include_last + exclude_last
+    return dp[n][target_sum]
+
+# Driver code
+if __name__ == '__main__':
+    coins = [1, 2, 3]  # Example coin denominations
+    target_sum = 5      # Target sum to achieve
+    n = len(coins)      # Number of coins
+    # Initialize the dp table with -1
+    dp = [[-1 for _ in range(target_sum + 1)] for _ in range(n + 1)]
+    
+    result = count(coins, target_sum, n, dp)  # Compute the result
+    print(result)  # Output the number of ways to make the target sum
