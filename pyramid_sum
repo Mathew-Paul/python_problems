@@ -1,0 +1,22 @@
+Find the pyramid sum of the given list. A pyramid sum is calculated by repeated addition of consecutive numbers until the list has one element.
+eg: Input
+[1,2,3]
+Output:
+8
+
+Explanation. list is reduced as [1+2,2+3] = [3,5] which is reduced to [3+5]. So the output is 8
+
+Solution:
+----------------
+
+def pyramid_sum(lst):
+    while len(lst) > 1:
+        new_lst = []
+        for i in range (len(lst)-1):
+            new_lst.append(lst[i] + lst[i+1])
+        lst = new_lst
+    return lst[0]
+
+a=[1,2,3]
+pyramid_result = pyramid_sum(a)
+print(pyramid_result)
