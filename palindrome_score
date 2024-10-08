@@ -1,0 +1,23 @@
+Given a space separated string. Calculate score of the string.Score of the determined as follows:
+If the word is palindrome and the word length is 4,then add 5 to the score palindrome and the word length is 5,
+then add 10 to the score.
+If the word is not palindrome,,then add 0 to the score.
+
+Example:
+Input: asdfg htth jklm rrtrr qwerty
+Output: 15
+
+Solution
+-----------------------------------------
+a="asdfg htth jklm rrtrr qwerty"
+b=a.split(' ') #converts into list
+c=0
+for i in b:
+    if (i==i[::-1]):
+        if(len(i)==4):
+            c+=5
+        elif(len(i)==5):
+            c+=10
+        else:  
+            c+=0
+print(c)
